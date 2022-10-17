@@ -1,45 +1,56 @@
 package com.example.task.service;
 
+import com.example.task.exception.CityNotFoundException;
+import com.example.task.model.City;
 import com.example.task.repository.AppRepository;
 import com.example.task.utils.JsonUtils;
 import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@Component
+
+@Service
 public class WeatherService {
-    private final RestTemplate openWeatherMap;
+    private RestTemplateService openWeatherService;
+    @Value("${config.url}")
+    private String baseUrl;
+    @Value("${config.appid}")
+    private String appId;
 
     private final AppRepository repository;
 
-    public WeatherService(RestTemplate openWeatherMap, AppRepository repository) {
-        this.openWeatherMap = openWeatherMap;
+    public WeatherService(RestTemplateService openWeatherService, AppRepository repository) {
+        this.openWeatherService = openWeatherService;
         this.repository = repository;
     }
 
 
-    public Object getForecast(Long id1, Long id2, Long id3, Long id4, Long id5) throws ParseException {
-        List<Long> citiesIds = new ArrayList<>(Arrays.asList(id1, id2, id3, id4, id5));
+    public Object getForecast(List<Long> ids) throws ParseException{
         List<Object> resultRequest = new ArrayList<>();
-        for(Long singleID : citiesIds){
-            if(singleID!=null){
-                Double longitude = repository.getById(singleID).getLongitude();
-                Double latitude = repository.getById(singleID).getLatitude();
+        for(Long singleID : ids){
 
-                final String url = "https://api.openweathermap.org/data/2.5/weather?lat="+latitude +
+                double longitude = repository.getById(singleID).getLongitude();
+                double latitude = repository.getById(singleID).getLatitude();
+
+                final String url = baseUrl+"?lat="+latitude +
                         "&lon="+longitude+
-                        "&exclude=hourly,daily,minutely&units=metric&appid=93836445ebca1a81c1081e8b9fa753f0&cnt=4";
-               Object notJSON = this.openWeatherMap.getForObject(url, Object.class);
+                        "&exclude=daily,minutely&units=metric&appid="+appId+"&cnt=1";
+                System.out.println(url);
+
+                openWeatherService.setResponseFromOpenWeather(url);
+
+                Object notJSON = openWeatherService.getResponse();
+
                 JSONObject json = JsonUtils.objectToJSONObject(notJSON);
                 Map<Object, Object> formatted = JsonUtils.getSiplifiedJson(json);
                 resultRequest.add(formatted);
-            }
+
+
 
         }
 
