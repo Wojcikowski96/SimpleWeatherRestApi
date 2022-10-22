@@ -26,39 +26,39 @@
     </city>
     <city>
         <id>5</id>
-        <name>Lodz</name>
-        <longitude>19.447221</longitude>
-        <latitude>51.761674</latitude>
+        <name>Nowy York</name>
+        <longitude>-73.935242</longitude>
+        <latitude>40.730610</latitude>
     </city>
     <city>
         <id>6</id>
-        <name>Lodz</name>
-        <longitude>19.447221</longitude>
-        <latitude>51.761674</latitude>
+        <name>Tokyo</name>
+        <longitude>139.839478</longitude>
+        <latitude>35.652832</latitude>
     </city>
     <city>
         <id>7</id>
-        <name>Lodz</name>
-        <longitude>19.447221</longitude>
-        <latitude>51.761674</latitude>
+        <name>Paryż</name>
+        <longitude>2.349014</longitude>
+        <latitude>48.864716</latitude>
     </city>
     <city>
         <id>8</id>
-        <name>Lodz</name>
-        <longitude>19.447221</longitude>
-        <latitude>51.761674</latitude>
+        <name>Moskwa</name>
+        <longitude>37.618423</longitude>
+        <latitude>55.751244</latitude>
     </city>
     <city>
         <id>9</id>
-        <name>Lodz</name>
-        <longitude>19.447221</longitude>
-        <latitude>51.761674</latitude>
+        <name>Charków</name>
+        <longitude>36.232845</longitude>
+        <latitude>49.988358</latitude>
     </city>
     <city>
         <id>10</id>
-        <name>Lodz</name>
-        <longitude>19.447221</longitude>
-        <latitude>51.761674</latitude>
+        <name>Rzym</name>
+        <longitude>12.496366</longitude>
+        <latitude>41.902782</latitude>
     </city>
 
 </class>

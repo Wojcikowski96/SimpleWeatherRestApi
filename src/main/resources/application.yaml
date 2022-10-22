@@ -1,3 +1,5 @@
 config:
-  url: "https://api.openweathermap.org/data/2.5/onecall"
+  url: "https://api.openweathermap.org/data/2.5/weather"
+  iconUrl: "http://openweathermap.org/img/wn/"
   appid: "93836445ebca1a81c1081e8b9fa753f0"
+  good-status: OK,NOT_ACCEPTABLE
