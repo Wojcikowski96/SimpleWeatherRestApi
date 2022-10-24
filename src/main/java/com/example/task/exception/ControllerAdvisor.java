@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 @ControllerAdvice
+
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CityNotFoundException.class)
     public ResponseEntity<Object> handleCityNotFoundException(

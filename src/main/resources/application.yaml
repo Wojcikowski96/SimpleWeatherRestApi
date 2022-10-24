@@ -3,3 +3,7 @@ config:
   iconUrl: "http://openweathermap.org/img/wn/"
   appid: "93836445ebca1a81c1081e8b9fa753f0"
   good-status: OK,NOT_ACCEPTABLE
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

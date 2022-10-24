@@ -54,7 +54,7 @@ public class WeatherService {
               CustomWeatherDto formatted = CustomWeatherDto.builder().temperature(openWeatherServiceResponse.getMain()
                       .getTemp()).description(openWeatherServiceResponse.getWeather().get(0).getDescription())
                       .location(openWeatherServiceResponse.getName()).locationID(singleID)
-                      .iconUrl(iconbaseUrl+openWeatherServiceResponse.getWeather().get(0).getIcon()).build();
+                      .iconUrl(iconbaseUrl+openWeatherServiceResponse.getWeather().get(0).getIcon()+".png").build();
                   resultRequest.add(formatted);
 
 

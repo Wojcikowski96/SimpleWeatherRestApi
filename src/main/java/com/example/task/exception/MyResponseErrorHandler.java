@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class MyResponseErrorHandler implements ResponseErrorHandler {
     private static final Logger log = LoggerFactory.getLogger(MyResponseErrorHandler.class);
 
-    private List acceptableStatus;
+    private final List acceptableStatus;
 
     public  MyResponseErrorHandler(@Value("${config.good-status}") String goodStatus) {
         System.out.println(goodStatus);
@@ -31,7 +31,7 @@ public class MyResponseErrorHandler implements ResponseErrorHandler {
 
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
-        log.error("Response error kibel: {} {}", response.getStatusCode(), response.getStatusText());
+        log.error("Response error : {} {}", response.getStatusCode(), response.getStatusText());
         throw new ExternalWebserviceException();
 
     }
