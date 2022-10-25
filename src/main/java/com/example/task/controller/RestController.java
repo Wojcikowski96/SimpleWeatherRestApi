@@ -10,6 +10,9 @@ import io.swagger.annotations.Tag;
 import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -30,16 +33,23 @@ public class RestController {
     }
     @GetMapping(path = "/cities")
     @ApiOperation("Gets all 10 predefined locations")
+
     public List<City> getLocations() throws ParserConfigurationException, IOException, SAXException {
         return (List<City>) repository.findAll();
     }
 
     @ApiOperation("Gets multiple forecasts for multiple locations identities")
+    @RequestMapping(value = "/forecasts", method = RequestMethod.GET)
+    public List<CustomWeatherDto> getMultipleForecast(@RequestParam(name="cityID") List<Long> idS) {
+
+
+        return service.getMultipleForecast(idS);
+    }
+
+    @ApiOperation("Gets forecast for single locationID")
     @RequestMapping(value = "/forecast", method = RequestMethod.GET)
-    public List<CustomWeatherDto> getForecast(@RequestParam(name="cityID") List<Long> idS)
-            throws ParseException{
+    public CustomWeatherDto getForecast(@RequestParam(name="cityID") Long identity) {
 
-
-        return service.getForecast(idS);
+        return service.getForecast(identity);
     }
 }
