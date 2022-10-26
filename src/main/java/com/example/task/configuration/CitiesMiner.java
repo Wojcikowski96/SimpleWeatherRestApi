@@ -1,6 +1,6 @@
 package com.example.task.configuration;
 
-import com.example.task.model.City;
+import com.example.task.clients.model.City;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

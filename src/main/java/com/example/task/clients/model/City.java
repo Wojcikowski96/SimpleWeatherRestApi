@@ -1,4 +1,4 @@
-package com.example.task.model;
+package com.example.task.clients.model;
 
 import org.springframework.stereotype.Component;
 

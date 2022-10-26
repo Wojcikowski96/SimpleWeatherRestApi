@@ -6,7 +6,7 @@
     <xs:element name="getForecast">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name = "identity" type="xs:long"/>
+                <xs:element name = "cityID" type="xs:long"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -27,6 +27,13 @@
             <xs:element name="temperature" nillable="false" type="xs:double"/>
             <xs:element name="location" nillable="false" type="xs:string"/>
             <xs:element name="iconUrl" nillable="false" type="xs:string"/>
+            <xs:element name="correlationID" nillable="false" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RequestFlowData">
+        <xs:sequence>
+            <xs:element name="correlationId" nillable="true" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

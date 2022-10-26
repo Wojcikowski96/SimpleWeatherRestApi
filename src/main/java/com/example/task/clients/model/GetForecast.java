@@ -1,33 +1,22 @@
-package com.example.task.model;
+package com.example.task.clients.model;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-
+@Getter
+@Setter
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "",  propOrder = {
-        "identity"
+        "cityID"
 })
 @XmlRootElement(name = "getForecast", namespace = "http://task.example.com")
 public class GetForecast {
 
-    protected long identity;
+    protected long cityID;
 
-    /**
-     * Gets the value of the identity property.
-     *
-     */
-    public long getIdentity() {
-        return identity;
-    }
-
-    /**
-     * Sets the value of the identity property.
-     *
-     */
-    public void setIdentity(long value) {
-        this.identity = value;
-    }
 
 }

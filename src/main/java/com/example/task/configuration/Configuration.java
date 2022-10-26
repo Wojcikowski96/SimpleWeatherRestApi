@@ -1,6 +1,6 @@
 package com.example.task.configuration;
 
-import com.example.task.model.City;
+import com.example.task.clients.model.City;
 import com.example.task.repository.AppRepository;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

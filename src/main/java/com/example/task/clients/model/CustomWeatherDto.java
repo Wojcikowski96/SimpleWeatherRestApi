@@ -1,9 +1,8 @@
-package com.example.task.model;
+package com.example.task.clients.model;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -19,7 +18,8 @@ import javax.xml.bind.annotation.XmlType;
         "description",
         "temperature",
         "location",
-        "iconUrl"
+        "iconUrl",
+        "correlationID"
 })
 public class CustomWeatherDto {
 
@@ -33,6 +33,8 @@ public class CustomWeatherDto {
     private String location;
     @XmlElement(required = true)
     private String iconUrl;
+    @XmlElement(required = true)
+    private String correlationID = RequestFlowData.getId();
 
 
 }
