@@ -15,6 +15,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 @XmlRootElement(name = "RequestFlowData", namespace = "http://task.example.com")
 public class RequestFlowData {
+    RequestFlowData(){
+
+    }
     public static final String CORRELATION_ID = "CorrelationId";
 
     private static final ThreadLocal<String> id = new ThreadLocal<String>();

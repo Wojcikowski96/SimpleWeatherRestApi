@@ -34,7 +34,8 @@ public class CustomWeatherDto {
     @XmlElement(required = true)
     private String iconUrl;
     @XmlElement(required = true)
-    private String correlationID = RequestFlowData.getId();
+
+    private String correlationID;
 
 
 }
