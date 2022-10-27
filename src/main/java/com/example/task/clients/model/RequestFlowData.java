@@ -4,32 +4,50 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "correlationId"
+        "correlationidkey",
+        "correlationId",
+        "retraceCount"
 })
 @XmlRootElement(name = "RequestFlowData", namespace = "http://task.example.com")
 @Component
+
 public class RequestFlowData {
-    RequestFlowData(){
+
+    @XmlElement(required = true, name = "CORRELATION_ID_KEY")
+    public static final String correlationidkey = "CorrelationId";
+    @XmlElement(required = true, nillable = true)
+    private static String correlationId;
+    @XmlElement(required = true, type = Integer.class, name = "retraceCount", nillable = true)
+    private static Integer retraceCount = 0;
+
+
+    public static void setId(String correlationId) {
+        RequestFlowData.correlationId = correlationId;
 
     }
-    public static final String CORRELATION_ID = "CorrelationId";
-
-    private static final ThreadLocal<String> id = new ThreadLocal<String>();
-
-    public static String getId() { return id.get(); }
-
-    public static void setId(String correlationId) { id.set(correlationId); }
 
     @Override
     public String toString() {
-        return String.valueOf(id);
+        return "RequestFlowData{" +
+                "correlationId='" + correlationId + '\'' +
+                ", retraceCount=" + retraceCount +
+                '}';
+    }
+
+    public String getCorrelationId() {
+        retraceCount++;
+        return correlationId;
+    }
+    public Integer getRetraceCount(){
+        return retraceCount;
+    }
+
+    public String getCorrelationIdKey() {
+        return correlationidkey;
     }
 }

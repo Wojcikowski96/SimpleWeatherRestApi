@@ -34,7 +34,7 @@ public class MyResponseErrorHandler implements ResponseErrorHandler {
     @Override
     public void handleError(ClientHttpResponse response) throws IOException {
         log.error("Response error : {} {}", response.getStatusCode(), response.getStatusText());
-        throw new ExternalWebserviceException(data.getId());
+        throw new ExternalWebserviceException(data.getCorrelationId(), data.getRetraceCount());
 
     }
 

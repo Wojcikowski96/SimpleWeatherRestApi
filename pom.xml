@@ -117,7 +117,7 @@
 					<sources>
 						<source>src/main/resources/weather.xsd</source>
 					</sources>
-					<outputDirectory>src/main/java/com/example/task/generated</outputDirectory>
+					<outputDirectory>src/main/java/generated</outputDirectory>
 					<clearOutputDir>false</clearOutputDir>
 				</configuration>
 			</plugin>

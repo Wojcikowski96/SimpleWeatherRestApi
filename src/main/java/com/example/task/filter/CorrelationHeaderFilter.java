@@ -18,7 +18,7 @@ public class CorrelationHeaderFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
         final HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-        String currentCorrId = httpServletRequest.getHeader(RequestFlowData.CORRELATION_ID);
+        String currentCorrId = httpServletRequest.getHeader(RequestFlowData.correlationidkey);
         LOGGER.info("ngłówki requesta: " + httpServletRequest.getHeaderNames());
 
         if (!currentRequestIsAsyncDispatcher(httpServletRequest)) {

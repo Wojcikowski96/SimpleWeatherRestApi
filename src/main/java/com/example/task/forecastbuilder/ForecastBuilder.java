@@ -29,14 +29,14 @@ public class ForecastBuilder {
     }
     public CustomWeatherDto buildForecast(GetForecast getForecast, RestTemplateService openWeatherService){
 
-        String correlationId = RequestFlowData.getId();
+        String correlationId = data.getCorrelationId();
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set(RequestFlowData.CORRELATION_ID, correlationId);
+        httpHeaders.set(RequestFlowData.correlationidkey, correlationId);
 
 
         Long locationID = getForecast.getCityID();
         repository.findById(getForecast.getCityID())
-                .orElseThrow(() -> new CityNotFoundException(locationID, data.getId()));
+                .orElseThrow(() -> new CityNotFoundException(locationID, data.getCorrelationId(), data.getRetraceCount()));
 
         double longitude = repository.findById(locationID).map(City::getLongitude).orElse(null);
         double latitude = repository.findById(locationID).map(City::getLatitude).orElse(null);

@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 @ControllerAdvice
-
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CityNotFoundException.class)
     public ResponseEntity<Object> handleCityNotFoundException(
@@ -21,6 +20,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         body.put("timestamp", LocalDateTime.now());
         body.put("message", "City not found");
         body.put("correlationId", ex.getCorrelationID());
+        body.put("messageLevel", ex.getErrorLevel());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }

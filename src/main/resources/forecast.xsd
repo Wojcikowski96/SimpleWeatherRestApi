@@ -27,13 +27,15 @@
             <xs:element name="temperature" nillable="false" type="xs:double"/>
             <xs:element name="location" nillable="false" type="xs:string"/>
             <xs:element name="iconUrl" nillable="false" type="xs:string"/>
-            <xs:element name="correlationID" nillable="false" type="xs:string"/>
+            <xs:element name="correlationID" nillable="false" type="tns:RequestFlowData"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:complexType name="RequestFlowData">
         <xs:sequence>
-            <xs:element name="correlationId" nillable="true" type="xs:string"/>
+            <xs:element name="CORRELATION_ID_KEY" nillable="true" type="xs:string"/>
+            <xs:element name="correlationIsd" nillable="true" type="xs:string"/>
+            <xs:element name="retraceCount" nillable="true" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>

@@ -10,13 +10,15 @@ import org.springframework.stereotype.Component;
 @Getter
 public class ExternalWebserviceException extends RuntimeException {
     private String correlationID;
+    private Integer messageLevel;
     ExternalWebserviceException(){
 
     }
 
-    public ExternalWebserviceException(String correlationID) {
+    public ExternalWebserviceException(String correlationID, Integer messageLevel) {
         super("Wystąpił problem z zewnętrznym webserwisem");
         this.correlationID = correlationID;
+        this.messageLevel = messageLevel;
     }
 
 }
