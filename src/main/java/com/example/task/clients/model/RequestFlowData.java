@@ -2,6 +2,7 @@ package com.example.task.clients.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,6 +15,7 @@ import javax.xml.bind.annotation.XmlType;
         "correlationId"
 })
 @XmlRootElement(name = "RequestFlowData", namespace = "http://task.example.com")
+@Component
 public class RequestFlowData {
     RequestFlowData(){
 

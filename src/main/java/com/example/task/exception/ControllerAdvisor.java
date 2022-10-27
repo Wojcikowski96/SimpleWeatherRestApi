@@ -20,6 +20,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", "City not found");
+        body.put("correlationId", ex.getCorrelationID());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
@@ -31,6 +32,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("message", ex.getMessage());
+        body.put("correlationID", ex.getCorrelationID());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }

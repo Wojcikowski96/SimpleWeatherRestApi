@@ -12,4 +12,15 @@ public class OpenWeatherDtoWeather {
     private MainInfoDto main;
     private String name;
 
+    private String correlationID;
+
+    @Override
+    public String toString() {
+        return "OpenWeatherDtoWeather{" +
+                "weather=" + weather +
+                ", main=" + main +
+                ", name='" + name + '\'' +
+                ", correlationID='" + correlationID + '\'' +
+                '}';
+    }
 }

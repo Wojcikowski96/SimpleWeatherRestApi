@@ -1,11 +1,22 @@
 package com.example.task.exception;
 
+import com.example.task.clients.model.RequestFlowData;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExternalWebserviceException extends RuntimeException{
-    public ExternalWebserviceException() {
+@Setter
+@Getter
+public class ExternalWebserviceException extends RuntimeException {
+    private String correlationID;
+    ExternalWebserviceException(){
 
-        super("Wystąpił problem z zewnętrznym webserwisem");
     }
+
+    public ExternalWebserviceException(String correlationID) {
+        super("Wystąpił problem z zewnętrznym webserwisem");
+        this.correlationID = correlationID;
+    }
+
 }

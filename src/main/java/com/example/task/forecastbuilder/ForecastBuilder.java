@@ -22,8 +22,10 @@ public class ForecastBuilder {
     @Value("${config.correlationID}")
     private String correlationID;
     private AppRepository repository;
-    ForecastBuilder(AppRepository repository){
+    private RequestFlowData data;
+    ForecastBuilder(AppRepository repository, RequestFlowData data){
         this.repository = repository;
+        this.data = data;
     }
     public CustomWeatherDto buildForecast(GetForecast getForecast, RestTemplateService openWeatherService){
 
@@ -34,7 +36,7 @@ public class ForecastBuilder {
 
         Long locationID = getForecast.getCityID();
         repository.findById(getForecast.getCityID())
-                .orElseThrow(() -> new CityNotFoundException(locationID));
+                .orElseThrow(() -> new CityNotFoundException(locationID, data.getId()));
 
         double longitude = repository.findById(locationID).map(City::getLongitude).orElse(null);
         double latitude = repository.findById(locationID).map(City::getLatitude).orElse(null);
@@ -50,11 +52,13 @@ public class ForecastBuilder {
         openWeatherService.setResponseFromOpenWeather(url);
 
         OpenWeatherDtoWeather openWeatherServiceResponse = openWeatherService.getResponse();
+        openWeatherServiceResponse.setCorrelationID(correlationId);
+        System.out.println(openWeatherServiceResponse);
 
         CustomWeatherDto formatted = CustomWeatherDto.builder().temperature(openWeatherServiceResponse.getMain()
                         .getTemp()).description(openWeatherServiceResponse.getWeather().get(0).getDescription())
                 .location(openWeatherServiceResponse.getName()).locationID(locationID)
-                .iconUrl(iconbaseUrl+openWeatherServiceResponse.getWeather().get(0).getIcon()+".png").correlationID(correlationId).build();
+                .iconUrl(iconbaseUrl+openWeatherServiceResponse.getWeather().get(0).getIcon()+".png").correlationID(data).build();
         return formatted;
     }
 }
